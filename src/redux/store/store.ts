@@ -1,8 +1,24 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import counterReducer from '../slices/counterSlice'
 import devToolsEnhancer from 'redux-devtools-expo-dev-plugin';
 import { persistStore, persistReducer, FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import appReducer from '../slices/appSlice'
+import stocksReducer from '../slices/stocksSlice'
+import counterReducer from '../slices/counterSlice'
+
+const appPersistConfig = {
+  key: 'app',
+  storage: AsyncStorage,
+
+};
+const appPersistReducer = persistReducer(appPersistConfig, appReducer);
+
+const stocksPersistConfig = {
+  key: 'stocks',
+  storage: AsyncStorage,
+
+};
+const stocksPersistReducer = persistReducer(stocksPersistConfig, stocksReducer);
 
 const counterPersistConfig = {
   key: 'counter',
@@ -12,6 +28,8 @@ const counterPersistConfig = {
 const counterPersistReducer = persistReducer(counterPersistConfig, counterReducer);
 
 const reducers = combineReducers({
+  app: appPersistReducer,
+  stocks: stocksPersistReducer,
   counter: counterPersistReducer,
 });
 
