@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "512083169028",
+    "project_id": "bbt-app-78340",
+    "storage_bucket": "bbt-app-78340.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512083169028:android:02883617d85265d5d38a51",
+        "android_client_info": {
+          "package_name": "com.bb"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAn236IEtlKxmsyaUM5F1L64ko6KcWsy9c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
