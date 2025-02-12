@@ -7,8 +7,9 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import * as Sentry from '@sentry/react-native';
-import { store } from '../redux/store/store'
+import { store, persistor } from '../redux/store/store'
 import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react';
 
 Sentry.init({
   dsn: 'https://65a10936fdca1657470e34da17e57810@o4508805175902209.ingest.de.sentry.io/4508805178130512',
@@ -38,6 +39,7 @@ export default function RootLayout() {
 
   return (
     <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
@@ -45,6 +47,7 @@ export default function RootLayout() {
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>
+      </PersistGate>
     </Provider>
   );
 }

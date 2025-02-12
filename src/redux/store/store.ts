@@ -1,14 +1,34 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import counterReducer from '../slices/counterSlice'
 import devToolsEnhancer from 'redux-devtools-expo-dev-plugin';
+import { persistStore, persistReducer, FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const counterPersistConfig = {
+  key: 'counter',
+  storage: AsyncStorage,
+
+};
+const counterPersistReducer = persistReducer(counterPersistConfig, counterReducer);
+
+const reducers = combineReducers({
+  counter: counterPersistReducer,
+});
+
+// Create the redux store
 export const store = configureStore({
-  reducer: {
-    counter: counterReducer
-  },
+  reducer: reducers,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
   devTools: false,
   enhancers: getDefaultEnhancers => getDefaultEnhancers().concat(devToolsEnhancer())
-})
+});
+
+export const persistor = persistStore(store, null, () => null);
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>
