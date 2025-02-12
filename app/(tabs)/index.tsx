@@ -1,9 +1,12 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { Image, StyleSheet, Platform, Button } from 'react-native';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+
+
+import * as Sentry from "@sentry/react-native";
 
 export default function HomeScreen() {
   return (
@@ -50,6 +53,7 @@ export default function HomeScreen() {
           <ThemedText type="defaultSemiBold">app-example</ThemedText>.
         </ThemedText>
       </ThemedView>
+      <Button title='Throw a Sentry error' onPress={ () => { Sentry.captureException(new Error('First error')) }}/>
     </ParallaxScrollView>
   );
 }

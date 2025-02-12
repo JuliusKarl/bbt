@@ -7,6 +7,14 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
+import * as Sentry from '@sentry/react-native';
+
+Sentry.init({
+  dsn: 'https://65a10936fdca1657470e34da17e57810@o4508805175902209.ingest.de.sentry.io/4508805178130512',
+
+  // uncomment the line below to enable Spotlight (https://spotlightjs.com)
+  // spotlight: __DEV__,
+});
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();

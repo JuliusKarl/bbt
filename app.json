@@ -48,6 +48,14 @@
             "useFrameworks": "static"
           }
         }
+      ],
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/",
+          "project": "bbt",
+          "organization": "juliuskarlm"
+        }
       ]
     ],
     "experiments": {
