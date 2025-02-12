@@ -21,6 +21,9 @@ expo-env.d.ts
 /ios
 /android
 
+# Google Services Info
+/vendor/firebase/
+
 # Metro
 .metro-health-check*
 
