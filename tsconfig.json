@@ -3,9 +3,13 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+     "@/app/*": ["./src/app/*"],
+      "@/assets/*": ["./src/assets/*"],
+      "@/constants/*": ["./src/constants/*"],
+      "@/components/*": ["./src/common/components/*"],
+      "@/redux/*": ["./src/redux/*"],
+      "@/hooks/*": ["./src/common/hooks/*"],
+      "@/services/*": ["./src/services/*"],
     }
   },
   "include": [
