@@ -3,9 +3,6 @@
  * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
  */
 
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
-
 export const Colors = {
   light: {
     primary: "rgb(120, 69, 172)",
@@ -47,7 +44,9 @@ export const Colors = {
     },
     surfaceDisabled: "rgba(29, 27, 30, 0.12)",
     onSurfaceDisabled: "rgba(29, 27, 30, 0.38)",
-    backdrop: "rgba(51, 47, 55, 0.4)"
+    backdrop: "rgba(51, 47, 55, 0.4)",
+    text: "rgba(0, 0, 0, 1)",
+    tint: '#0a7ea4'
   },
   dark: {
     primary: "rgb(220, 184, 255)",
@@ -89,6 +88,8 @@ export const Colors = {
     },
     surfaceDisabled: "rgba(231, 225, 229, 0.12)",
     onSurfaceDisabled: "rgba(231, 225, 229, 0.38)",
-    backdrop: "rgba(51, 47, 55, 0.4)"
+    backdrop: "rgba(51, 47, 55, 0.4)",
+    text: "rgba(255, 255, 255, 1)",
+    tint: "#fff"
   }
 };
