@@ -27,6 +27,7 @@ export default function RootLayout() {
     const init = async () => {
       await onStartup();
       setLoaded(true);
+      SplashScreen.hideAsync();
     }
 
     init();
