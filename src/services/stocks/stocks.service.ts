@@ -8,7 +8,7 @@ const dispatch = store.dispatch;
 
 // API
 const apiURL = '';
-const apiToken = process.env.API_TOKEN;
+const apiToken = process.env.EXPO_PUBLIC_API_TOKEN;
 
 const StocksService = {
     init: async () => {
@@ -47,13 +47,16 @@ const StocksService = {
     },
     getAll: async () => {
         try {
-            const request = await fetch('https://examples.com/data.json', {
+            const response = await fetch(`${apiURL}`, {
                 method: 'GET',
                 headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json'
+                    'Accept': 'application/json',
+                    'api-key': `${apiToken}`
                 },
             });
+
+            const stocks = response.json();
+            return stocks;
         } catch (error) {
             if (error instanceof Error) {
                 dispatch(setError(true));
