@@ -3,24 +3,28 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedView } from '@/components/ThemedView';
 import * as Sentry from "@sentry/react-native";
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/redux/store/store';
+import { RootState, store } from '@/redux/store/store';
 import { decrement, increment } from '@/redux/slices/counterSlice';
-import { getCrashlytics, crash, log, recordError } from '@react-native-firebase/crashlytics';
-import ErrorBoundary from 'react-native-error-boundary';
+import { getCrashlytics, crash, recordError, } from '@react-native-firebase/crashlytics';
 
 export default function HomeScreen() {
   const dispatch = useDispatch();
   const style = styles();
-
   const crashlytics = getCrashlytics();
   const counter = useSelector((state: RootState) => state.counter.value);
 
+  // Functions
   const increaseCounter = () => {
     dispatch(increment())
   }
 
   const decreaseCounter = () => {
     dispatch(decrement())
+  }
+
+  const throwJSCrash = () => {
+    const test: any = {};
+    console.log(test.should.crash);
   }
 
   return (
@@ -37,8 +41,10 @@ export default function HomeScreen() {
         <Text>{counter}</Text>
         <Button title="+" onPress={increaseCounter} />
       </ThemedView>
-      <Button title='Throw a Sentry error' onPress={() => { Sentry.captureException(new Error('First error')) }} />
-      <Button title='Throw a Crashlytics crash' onPress={() => { crash(crashlytics) }} />
+      <Button title='Throw a Sentry error' onPress={() => Sentry.captureException(new Error('First error'))} />
+      <Button title='Throw a JS crash' onPress={throwJSCrash} />
+      <Button title='Throw a Fatal Crashlytics crash' onPress={() => { crash(crashlytics) }} />
+      <Button title='Throw a Non-Fatal Crashlytics error' onPress={() => recordError(crashlytics, new Error(), `Test Error: ${JSON.stringify(store.getState())}`)} />
     </ParallaxScrollView>
   );
 }
