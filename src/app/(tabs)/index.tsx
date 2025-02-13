@@ -7,13 +7,18 @@ import { RootState, store } from '@/redux/store/store';
 import { decrement, increment } from '@/redux/slices/counterSlice';
 import { getCrashlytics, crash, recordError, } from '@react-native-firebase/crashlytics';
 import { logEvent, getAnalytics } from '@react-native-firebase/analytics';
+import { MD3Theme, useTheme } from 'react-native-paper';
 
 export default function HomeScreen() {
+  const theme = useTheme();
+  const style = styles(theme);
   const dispatch = useDispatch();
-  const style = styles();
+
   const crashlytics = getCrashlytics();
   const analytics = getAnalytics();
   const counter = useSelector((state: RootState) => state.counter.value);
+
+  theme.colors
 
   // Functions
   const increaseCounter = () => {
@@ -57,7 +62,7 @@ export default function HomeScreen() {
   );
 }
 
-const styles = () => StyleSheet.create({
+const styles = (theme: MD3Theme) => StyleSheet.create({
   reactLogo: {
     height: 178,
     width: 290,
@@ -68,6 +73,7 @@ const styles = () => StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: theme.colors.primary
   }
 });
