@@ -1,5 +1,4 @@
 import { StyleSheet, ScrollView } from 'react-native';
-import { IconSymbol } from '@/components/ui/IconSymbol';
 
 export default function TabTwoScreen() {
   const test: any = {};

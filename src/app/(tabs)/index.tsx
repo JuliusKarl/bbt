@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Button, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Button, Text, View, ScrollView } from 'react-native';
 import * as Sentry from "@sentry/react-native";
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, store } from '@/redux/store/store';
